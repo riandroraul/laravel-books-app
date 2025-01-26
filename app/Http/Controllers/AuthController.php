@@ -26,4 +26,33 @@ class AuthController extends Controller
 
     return $user->createToken('secretkey')->plainTextToken;
   }
+
+  function registration(Request $request)
+  {
+    $request->validate([
+      'name' => 'required|min:3|max:255',
+      'email' => 'required|email',
+      'password' => 'required|min:5',
+    ]);
+
+    if (User::where('email', '==', $request->email)) {
+      return response()->json([
+        'status' => false,
+        'statusCode' => 400,
+        'message' => 'email already used!'
+      ]);
+    }
+
+    $newUser = User::create([
+      'name' => $request->name,
+      'email' => $request->email,
+      'password' => Hash::make($request->password),
+    ]);
+
+    return response()->json([
+      'status' => true,
+      'statusCode' => 200,
+      'message' => 'Registration Successfully'
+    ]);
+  }
 }
