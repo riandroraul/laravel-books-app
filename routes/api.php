@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookCategoryController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\BookTransactionController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -30,4 +31,11 @@ Route::prefix('book')->group(function () {
     Route::post('/create', [BookController::class, 'create'])->middleware('auth:sanctum');
     Route::put('/update/{id}', [BookController::class, 'update'])->middleware('auth:sanctum');
     Route::delete('/remove/{id}', [BookController::class, 'remove'])->middleware('auth:sanctum');
+});
+
+// Book transaction Service
+Route::prefix('book-transaction')->group(function () {
+    Route::get('/borrowed', [BookTransactionController::class, 'borrowed'])->middleware('auth:sanctum');
+    Route::post('/borrowing', [BookTransactionController::class, 'borrowing'])->middleware('auth:sanctum');
+    Route::put('/returned/{id}', [BookTransactionController::class, 'returned'])->middleware('auth:sanctum');
 });
