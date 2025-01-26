@@ -8,3 +8,25 @@
 </p>
 
 ## About Project
+in this case create backend API about book service such as borrowing books in library
+
+## requirements
+in this project I use laragon which already has php version 8.3, mysql and nginx web server
+
+### download Project
+
+```bash
+git clone https://github.com/riandroraul/laravel-books-app.git
+```
+
+### generate database
+```bash
+php artisan migrate
+```
+
+### running application
+```bash
+php artisan serve
+```
+### notes
+postman collection can be access in root folder with filename laravel-books-api.postman_collection.json
