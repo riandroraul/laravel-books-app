@@ -35,13 +35,13 @@ class AuthController extends Controller
       'password' => 'required|min:5',
     ]);
 
-    if (User::where('email', '==', $request->email)) {
-      return response()->json([
-        'status' => false,
-        'statusCode' => 400,
-        'message' => 'email already used!'
-      ]);
-    }
+    // if (User::where('email', '==', $request->email)) {
+    //   return response()->json([
+    //     'status' => false,
+    //     'statusCode' => 400,
+    //     'message' => 'email already used!'
+    //   ]);
+    // }
 
     $newUser = User::create([
       'name' => $request->name,
